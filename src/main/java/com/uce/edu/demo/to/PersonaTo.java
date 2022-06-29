@@ -1,6 +1,6 @@
-package com.uce.edu.demo.modelo.to;
+package com.uce.edu.demo.to;
 
-public class Persona {
+public class PersonaTo {
 
 	private int id;
 	private String nombre;
@@ -12,12 +12,12 @@ public class Persona {
 	}
 
 	//Constructor por defecto
-	public Persona() {
+	public PersonaTo() {
 		
 	}
 	
 	//Constructor creado
-	public Persona(int id, String nombre, String apellido) {
+	public PersonaTo(int id, String nombre, String apellido) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
