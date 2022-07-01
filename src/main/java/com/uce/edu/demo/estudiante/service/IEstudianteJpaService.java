@@ -1,8 +1,8 @@
-package com.uce.edu.demo.jdbcestudiante.service;
+package com.uce.edu.demo.estudiante.service;
 
-import com.uce.edu.demo.jdbcestudiante.to.Estudiante;
+import com.uce.edu.demo.estudiante.modelo.Estudiante;
 
-public interface IEstudianteJdbcService {
+public interface IEstudianteJpaService {
 
 	public void guardar(Estudiante estudiante);
 

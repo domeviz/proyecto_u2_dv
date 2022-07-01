@@ -1,11 +1,11 @@
-package com.uce.edu.demo.jdbcestudiante.repository;
+package com.uce.edu.demo.estudiante.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.uce.edu.demo.jdbcestudiante.to.Estudiante;
+import com.uce.edu.demo.estudiante.to.EstudianteTo;
 
 @Repository
 public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository {
@@ -14,14 +14,14 @@ public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	@Override
-	public Estudiante buscarPorId(int id) {
+	public EstudianteTo buscarPorId(int id) {
 		// TODO Auto-generated method stub
 		return this.jdbcTemplate.queryForObject("select * from estudiante where id=?", new Object[] { id },
-				new BeanPropertyRowMapper<Estudiante>(Estudiante.class));
+				new BeanPropertyRowMapper<EstudianteTo>(EstudianteTo.class));
 	}
 
 	@Override
-	public void insertar(Estudiante estudiante) {
+	public void insertar(EstudianteTo estudiante) {
 		// TODO Auto-generated method stub
 		this.jdbcTemplate.update("insert into estudiante (id, cedula, nombre, apellido, edad) values (?, ?, ?, ?, ?)",
 				new Object[] { estudiante.getId(), estudiante.getCedula(), estudiante.getNombre(),
@@ -29,7 +29,7 @@ public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository {
 	}
 
 	@Override
-	public void actualizar(Estudiante estudiante) {
+	public void actualizar(EstudianteTo estudiante) {
 		// TODO Auto-generated method stub
 		this.jdbcTemplate.update("update estudiante set cedula=?, nombre=?, apellido=?, edad=? where id=?",
 				new Object[] { estudiante.getCedula(), estudiante.getNombre(), estudiante.getApellido(),

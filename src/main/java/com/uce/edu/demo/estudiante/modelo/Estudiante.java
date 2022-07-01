@@ -1,11 +1,24 @@
-package com.uce.edu.demo.jdbcestudiante.to;
+package com.uce.edu.demo.estudiante.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="estudiante")
 public class Estudiante {
 
-	private int id;
+	@Id
+	@Column(name="id")
+	private Integer id;
+	@Column(name="cedula")
 	private String cedula;
+	@Column(name="nombre")
 	private String nombre;
+	@Column(name="apellido")
 	private String apellido;
+	@Column(name="edad")
 	private String edad;
 	
 	@Override
