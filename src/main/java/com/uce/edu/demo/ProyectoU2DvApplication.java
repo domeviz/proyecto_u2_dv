@@ -48,7 +48,7 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 		p1.setGenero("F");
 		p1.setCedula("1234");
 
-		//this.iPersonaJpaService.actualizar(p1);
+		// this.iPersonaJpaService.actualizar(p1);
 
 		// Eliminar
 		// this.iPersonaJpaService.eliminar(1);
@@ -60,10 +60,21 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 
 		// Buscar por Apellido
 		List<Persona> listP = this.iPersonaJpaService.buscarPorApellido("Vizcarra");
-		for(Persona item:listP) {
+		for (Persona item : listP) {
 			LOG.info("Persona: " + item);
 		}
 		
+		// Buscar por Nombre
+		List<Persona> listPNombre = this.iPersonaJpaService.buscarPorNombre("Pepito");
+		for (Persona item : listPNombre) {
+			LOG.info("Persona: " + item);
+		}
+		
+		// Buscar por Genero
+		List<Persona> listPGenero = this.iPersonaJpaService.buscarPorGenero("F");
+		for (Persona item : listPGenero) {
+			LOG.info("Persona: " + item);
+		}
 
 	}
 
