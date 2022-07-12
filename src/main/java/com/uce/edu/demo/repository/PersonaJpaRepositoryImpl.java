@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -50,6 +51,30 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		jpqlQuery.setParameter("datoCedula", cedula);
 		return (Persona)jpqlQuery.getSingleResult();
 	}
+	
+	@Override
+	public Persona buscarPorCedulaTyped(String cedula) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myTypedQuery=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.cedula=: datoCedula", Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		Query myNamedQuery=this.entityManager.createNamedQuery("Persona.buscarPorCedula");
+		myNamedQuery.setParameter("datoCedula", cedula);
+		return (Persona)myNamedQuery.getSingleResult();
+	}
+	
+	@Override
+	public Persona buscarPorCedulaTypedNamed(String cedula) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myTNamedQuery=this.entityManager.createNamedQuery("Persona.buscarPorCedula",Persona.class);
+		myTNamedQuery.setParameter("datoCedula", cedula);
+		return myTNamedQuery.getSingleResult();
+	}
 
 	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
@@ -57,6 +82,15 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		Query myQuery=this.entityManager.createQuery("SELECT p FROM Persona p WHERE p.apellido=: datoApellido");
 		myQuery.setParameter("datoApellido", apellido);
 		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myTNamedQuery=this.entityManager.createNamedQuery("Persona.buscarPorNombreApellido",Persona.class);
+		myTNamedQuery.setParameter("datoNombre", nombre);
+		myTNamedQuery.setParameter("datoApellido", apellido);
+		return myTNamedQuery.getResultList();
 	}
 
 	@Override

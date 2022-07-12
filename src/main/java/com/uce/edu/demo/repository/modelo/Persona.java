@@ -5,11 +5,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "persona")
+@NamedQuery(name = "Persona.buscarPorCedula", query = "SELECT p FROM Persona p WHERE p.cedula=: datoCedula")
+@NamedQuery(name = "Persona.buscarPorNombreApellido", query = "SELECT p FROM Persona p WHERE p.nombre=: datoNombre AND p.apellido=: datoApellido")
+//@NamedQueries({
+//		@NamedQuery(name = "Persona.buscarPorCedula", query = "SELECT p FROM Persona p WHERE p.cedula=: datoCedula"),
+//		@NamedQuery(name = "Persona.buscarPorNombreApellido", query = "SELECT p FROM Persona p WHERE p.nombre=: datoNombre AND p.apellido=: datoApellido") })
 public class Persona {
 
 	@Id
@@ -60,7 +67,7 @@ public class Persona {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	
+
 	public String getCedula() {
 		return cedula;
 	}
