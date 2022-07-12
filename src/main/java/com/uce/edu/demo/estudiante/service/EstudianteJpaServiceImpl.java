@@ -1,5 +1,7 @@
 package com.uce.edu.demo.estudiante.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,42 @@ public class EstudianteJpaServiceImpl implements IEstudianteJpaService {
 	public Estudiante buscarPorId(int id) {
 		// TODO Auto-generated method stub
 		return this.iEstudianteJpaRepository.buscarPorId(id);
+	}
+
+	@Override
+	public Estudiante buscarPorIdTyped(Integer id) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorIdTyped(id);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorNombreTyped(String nombre) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorNombreTyped(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorApellidoNamed(String apellido) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorApellidoNamed(apellido);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorCedulaApellidoTypedNamed(String cedula, String apellido) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorCedulaApellidoTypedNamed(cedula, apellido);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorEdadTypedNamed(String edad) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorEdadTypedNamed(edad);
 	}
 
 }

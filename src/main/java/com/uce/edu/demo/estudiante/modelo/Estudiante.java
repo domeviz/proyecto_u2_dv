@@ -3,10 +3,20 @@ package com.uce.edu.demo.estudiante.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="estudiante")
+
+//Named
+@NamedQuery(name = "Estudiante.buscarPorCedula", query = "SELECT e FROM Estudiante e WHERE e.cedula=: datoCedula")
+@NamedQuery(name = "Estudiante.buscarPorApellido", query = "SELECT e FROM Estudiante e WHERE e.apellido=: datoApellido ORDER BY e.apellido ASC")
+
+//TypedNamed
+@NamedQuery(name = "Estudiante.buscarPorCedulaApellido", query = "SELECT e FROM Estudiante e WHERE e.cedula=: datoCedula AND e.apellido=: datoApellido")
+@NamedQuery(name = "Estudiante.buscarPorEdad", query = "SELECT e FROM Estudiante e WHERE e.edad=: datoEdad")
+
 public class Estudiante {
 
 	@Id
