@@ -3,6 +3,8 @@ package com.uce.edu.demo.estudiante.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -16,6 +18,12 @@ import javax.persistence.Table;
 //TypedNamed
 @NamedQuery(name = "Estudiante.buscarPorCedulaApellido", query = "SELECT e FROM Estudiante e WHERE e.cedula=: datoCedula AND e.apellido=: datoApellido")
 @NamedQuery(name = "Estudiante.buscarPorEdad", query = "SELECT e FROM Estudiante e WHERE e.edad=: datoEdad")
+
+//NativeNamed
+@NamedNativeQueries({
+	@NamedNativeQuery(name="Estudiante.buscarPorCedulaNativeNamed",query="SELECT * FROM estudiante WHERE cedula = :datoCedula", resultClass=Estudiante.class),
+	@NamedNativeQuery(name="Estudiante.buscarPorApellidoEdadNativeNamed",query="SELECT * FROM estudiante WHERE apellido = :datoApellido AND edad= :datoEdad", resultClass=Estudiante.class)
+})
 
 public class Estudiante {
 
