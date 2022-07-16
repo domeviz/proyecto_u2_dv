@@ -1,15 +1,13 @@
 package com.uce.edu.demo;
 
-import java.util.List;
-
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.estudiante.modelo.Estudiante;
-import com.uce.edu.demo.estudiante.service.IEstudianteJpaService;
+import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
 public class ProyectoU2DvApplication implements CommandLineRunner {
@@ -17,7 +15,7 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	private static Logger LOG = Logger.getLogger(ProyectoU2DvApplication.class);
 
 	@Autowired
-	private IEstudianteJpaService iEstudianteJpaService;
+	private IPersonaJpaService iPersonaJpaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2DvApplication.class, args);
@@ -27,27 +25,18 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		//NativeQuery
-		//Buscar por apellido y edad
-		List<Estudiante> listNative = this.iEstudianteJpaService.buscarPorApellidoEdadNativeNamed("Vizcarra", "21");
-		for (Estudiante item : listNative) {
-			LOG.info(" 1 Native Estudiante: " + item);
-		}
+		Persona perAPI= this.iPersonaJpaService.buscarPorCedulaCriteriaApi("123");
+		LOG.info(" Criteria API Persona: " + perAPI);
 		
-		//Buscar por cedula, nombre y apellido
-		Estudiante estNative= this.iEstudianteJpaService.buscarPorCedulaNombreApellidoNative("4356721", "Angelica", "Cruz");
-		LOG.info(" 2 Native Estudiante: " + estNative);
+		LOG.info("Dinamica  : ");	
+		Persona perDinamica= this.iPersonaJpaService.buscarDinamicamente("Daniel", "Velez", "M");
+		LOG.info(" 1 Persona: " + perDinamica);
 		
-		//NativeNamedQuery
-		//Buscar por edad
-		List<Estudiante> listNativeNamed = this.iEstudianteJpaService.buscarPorEdadNative("25");
-		for (Estudiante item : listNativeNamed) {
-			LOG.info(" 1 Native Named Estudiante: " + item);
-		}
+		Persona perDinamica1=this.iPersonaJpaService.buscarDinamicamente("Diana", "Mancero", "F");
+		LOG.info(" 2 Persona: " + perDinamica1);
 		
-		//Buscar por cedula
-		Estudiante estNativeNamed= this.iEstudianteJpaService.buscarPorCedulaNativeNamed("1444255");
-		LOG.info(" 2 Native Named Estudiante: " + estNativeNamed);
+		Persona perDinamica2=this.iPersonaJpaService.buscarDinamicamentePredicados("Daniel", "Velez", "M");
+		LOG.info(" 3 Persona: " + perDinamica2);
 
 	}
 
