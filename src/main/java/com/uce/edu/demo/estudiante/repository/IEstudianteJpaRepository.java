@@ -33,4 +33,8 @@ public interface IEstudianteJpaRepository {
 	//NativeQuery y NamedQuery
 	public List<Estudiante> buscarPorApellidoEdadNativeNamed(String apellido, String edad);
 	public Estudiante buscarPorCedulaNativeNamed(String cedula);
+	
+	//Criteria API
+	public List<Estudiante> buscarDinamicamentePorApellidoCursoGeneroCriteriaAPI(String apellido, String curso, String genero);
+	public Estudiante buscarDinamicamentePorApellidoEdadGeneroCriteriaAPI(String apellido, String edad, String genero);
 }

@@ -1,12 +1,15 @@
 package com.uce.edu.demo;
 
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.estudiante.modelo.Estudiante;
+import com.uce.edu.demo.estudiante.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
 @SpringBootApplication
@@ -16,6 +19,9 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 
 	@Autowired
 	private IPersonaJpaService iPersonaJpaService;
+	
+	@Autowired
+	private IEstudianteJpaService iEstudianteJpaService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2DvApplication.class, args);
@@ -25,18 +31,18 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Persona perAPI= this.iPersonaJpaService.buscarPorCedulaCriteriaApi("123");
-		LOG.info(" Criteria API Persona: " + perAPI);
+		Estudiante estDinamica=this.iEstudianteJpaService.buscarDinamicamentePorApellidoEdadGeneroCriteriaAPI("Vizcarra", "21", "F");
+		LOG.info(" 1 Estudiante: " + estDinamica);
 		
-		LOG.info("Dinamica  : ");	
-		Persona perDinamica= this.iPersonaJpaService.buscarDinamicamente("Daniel", "Velez", "M");
-		LOG.info(" 1 Persona: " + perDinamica);
+		List<Estudiante> listDinamica=this.iEstudianteJpaService.buscarDinamicamentePorApellidoCursoGeneroCriteriaAPI("Martinez", "1", "M");
+		for (Estudiante item : listDinamica) {
+			LOG.info(" 2 Estudiante: " + item);
+		}
 		
-		Persona perDinamica1=this.iPersonaJpaService.buscarDinamicamente("Diana", "Mancero", "F");
-		LOG.info(" 2 Persona: " + perDinamica1);
-		
-		Persona perDinamica2=this.iPersonaJpaService.buscarDinamicamentePredicados("Daniel", "Velez", "M");
-		LOG.info(" 3 Persona: " + perDinamica2);
+		List<Estudiante> listDinamica2=this.iEstudianteJpaService.buscarDinamicamentePorApellidoCursoGeneroCriteriaAPI("Martinez", "1", "F");
+		for (Estudiante item : listDinamica2) {
+			LOG.info(" 3 Estudiante: " + item);
+		}
 
 	}
 
