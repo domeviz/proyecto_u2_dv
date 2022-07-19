@@ -8,7 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.demo.estudiante.modelo.Estudiante;
+import com.uce.edu.demo.estudiante.modelo.EstudianteContadorEdad;
+import com.uce.edu.demo.estudiante.modelo.EstudianteSencillo;
 import com.uce.edu.demo.estudiante.service.IEstudianteJpaService;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
@@ -33,14 +34,14 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		List<PersonaSencilla> listaPersona=this.iPersonaJpaService.buscarPorApellidoSencillo("Ayala");
-		for(PersonaSencilla perItem:listaPersona) {
-			LOG.info(" Persona Sencilla: " + perItem);
+		List<EstudianteSencillo> listaEstudiante=this.iEstudianteJpaService.buscarPorCursoSencillo("6");
+		for(EstudianteSencillo item: listaEstudiante) {
+			LOG.info(" Estudiantes del curso: " + item);
 		}
 		
-		List<PersonaContadorGenero> mylistaPersona=this.iPersonaJpaService.buscarCantidadPorGenero();
-		for(PersonaContadorGenero perItem:mylistaPersona) {
-			LOG.info(" Genero: " + perItem);
+		List<EstudianteContadorEdad> mylistaEstudiante=this.iEstudianteJpaService.buscarCantidadPorEdad();
+		for(EstudianteContadorEdad item: mylistaEstudiante) {
+			LOG.info(" Edad: " + item);
 		}
 	}
 

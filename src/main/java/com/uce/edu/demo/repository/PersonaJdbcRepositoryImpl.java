@@ -65,8 +65,6 @@ public class PersonaJdbcRepositoryImpl implements IPersonaJdbcRepository {
 			return persona;
 		}
 		
-		
-		
 	}
 
 }
