@@ -7,8 +7,8 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.pasaporte.modelo.CiudadanoP;
-import com.uce.edu.demo.repository.modelo.Ciudadano;
-import com.uce.edu.demo.repository.modelo.Empleado;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
+import com.uce.edu.demo.repository.modelo.onetoone.Empleado;
 
 @Repository
 @Transactional
