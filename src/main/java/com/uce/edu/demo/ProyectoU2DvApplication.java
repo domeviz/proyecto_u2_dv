@@ -6,6 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.gerencia.modelo.Empleados;
+import com.uce.edu.demo.gerencia.modelo.Gerente;
+import com.uce.edu.demo.gerencia.service.IEmpleadoService;
+import com.uce.edu.demo.gerencia.service.IGerenteService;
 import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
 import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
 import com.uce.edu.demo.service.IHabitacionService;
@@ -17,10 +21,7 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	private static Logger LOG = Logger.getLogger(ProyectoU2DvApplication.class);
 
 	@Autowired
-	private IHotelService iHotelService;
-	
-	@Autowired
-	private IHabitacionService iHabitacionService;
+	private IGerenteService iGerenteService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoU2DvApplication.class, args);
@@ -29,31 +30,53 @@ public class ProyectoU2DvApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+		Gerente g = new Gerente();
+		g.setNombre("Domenica");
+		g.setApellido("Vizcarra");
+		g.setSucursal("Norte");
+		
+		Empleados e=new Empleados();
+		e.setNombre("Mateo");
+		e.setApellido("Ruiz");
+		e.setGerente(g);
+		
+		Empleados e1=new Empleados();
+		e1.setNombre("Carolina");
+		e1.setApellido("Montero");
+		e1.setGerente(g);
+		
+		this.iGerenteService.insertar(g);
+		
+		Gerente g2 = new Gerente();
+		g2.setNombre("Luis");
+		g2.setApellido("Torres");
+		g2.setSucursal("Sur");
+		
+		Empleados e2=new Empleados();
+		e2.setNombre("Mateo");
+		e2.setApellido("Ruiz");
+		e2.setGerente(g2);
+		
+		this.iGerenteService.insertar(g2);
+		
+		LOG.info("Se ha insertado al gerente " + g);
+		LOG.info("Se ha insertado al gerente " + g2);
+		
+		Gerente g1 = new Gerente();
+		g1.setId(3);
+		g1.setNombre("Fernando");
+		g1.setApellido("Torres");
+		g1.setSucursal("Centro");
 
-//		Hotel h1=new Hotel();
-//		h1.setNombre("Hilton Colon GUY");
-//		h1.setDireccion("Malecon");
-//		this.iHotelService.insertar(h1);
+		this.iGerenteService.actualizar(g1);
 		
-		Hotel hote = new Hotel();
-		hote.setId(1);
+		LOG.info("Se ha actualizado al gerente " + g1);
 		
-		Habitacion habi1 = new Habitacion();
-		habi1.setNumero("A1234");
-		habi1.setPiso("10");
-		habi1.setTipo("Familiar");
+		LOG.info("Se ha encontrado al gerente " + this.iGerenteService.buscar(6));
 		
-		habi1.setHotel(hote);
-	
-		Habitacion habi2 = new Habitacion();
-		habi2.setNumero("A123456");
-		habi2.setPiso("1");
-		habi2.setTipo("Matrimonial");
+		this.iGerenteService.eliminar(4);
 		
-		habi2.setHotel(hote);
-		this.iHabitacionService.insertar(habi1);
-		this.iHabitacionService.insertar(habi2);
-
 	}
 
 }
