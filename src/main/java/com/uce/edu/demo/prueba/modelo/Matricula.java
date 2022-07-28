@@ -8,25 +8,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "matricula")
+@Entity
+@Table(name = "matricula")
 public class Matricula {
 
-//	@Id
-//	@Column(name = "matr_id")
-//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "matr_id_seq")
-//	@SequenceGenerator(name = "matr_id_seq", sequenceName = "matr_id_seq", allocationSize = 1)
-	private String id;
-//	@Column(name = "matr_fecha_matricula")
+	@Id
+	@Column(name = "matr_id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "matr_id_seq")
+	@SequenceGenerator(name = "matr_id_seq", sequenceName = "matr_id_seq", allocationSize = 1)
+	private Integer id;
+	@Column(name = "matr_fecha_matricula")
 	private LocalDateTime fechaMatricula;
-//	@Column(name = "matr_valor_matricula")
+	@Column(name = "matr_valor_matricula")
 	private BigDecimal valorMatricula;
-//	@Column(name = "matr_propietario")
+
+	@ManyToOne
+	@JoinColumn(name = "matr_id_propietario")
 	private Propietario propietario;
-//	@Column(name = "matr_vehiculo")
+
+	@ManyToOne
+	@JoinColumn(name = "matr_id_vehiculo")
 	private Vehiculo vehiculo;
 
 	@Override
@@ -35,17 +41,17 @@ public class Matricula {
 				+ ", propietario=" + propietario + ", vehiculo=" + vehiculo + "]";
 	}
 
-	//SET Y GET
-	public String getId() {
+	// SET Y GET
+	public LocalDateTime getFechaMatricula() {
+		return fechaMatricula;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getFechaMatricula() {
-		return fechaMatricula;
 	}
 
 	public void setFechaMatricula(LocalDateTime fechaMatricula) {
@@ -75,5 +81,5 @@ public class Matricula {
 	public void setVehiculo(Vehiculo vehiculo) {
 		this.vehiculo = vehiculo;
 	}
-	
+
 }

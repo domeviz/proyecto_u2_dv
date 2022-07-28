@@ -1,8 +1,11 @@
 package com.uce.edu.demo.prueba.modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,9 @@ public class Propietario {
 	private String nombre;
 	@Column(name = "prop_apellido")
 	private String apellido;
+	
+	@OneToMany(mappedBy = "propietario")
+	private List<Matricula> matriculas;
 	
 	@Override
 	public String toString() {
@@ -40,6 +46,14 @@ public class Propietario {
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
 	}
 	
 }
